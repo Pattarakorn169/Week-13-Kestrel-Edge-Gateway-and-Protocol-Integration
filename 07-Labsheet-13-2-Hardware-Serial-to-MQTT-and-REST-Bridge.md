@@ -319,8 +319,18 @@ curl -X POST http://localhost:5000/api/led/on
 ```
 *สังเกตว่าคำสั่ง `LED:ON` ถูกส่งผ่านสาย USB เข้าไปควบคุมบอร์ดทันที!*
 
+<img width="1382" height="443" alt="image" src="https://github.com/user-attachments/assets/c9ed69fa-8ed0-4700-aafb-f777d66dfae1" />
+
+<img width="1206" height="492" alt="image" src="https://github.com/user-attachments/assets/9374a695-f158-4291-9aa7-db3f0f65d1f6" />
+
 ---
 
 ## 4. คำถามท้ายการทดลอง
 1. สถาปัตยกรรมแบบ Serial-to-MQTT Bridge นี้ช่วยให้อุปกรณ์รุ่นเก่า (Legacy Hardware) ที่ไม่มี Wi-Fi สามารถเข้าร่วมระบบนิเวศ IoT สมัยใหม่ได้อย่างไร?
+```
+Serial-to-MQTT Bridge ช่วยให้อุปกรณ์รุ่นเก่าที่ไม่มี Wi-Fi สามารถส่งข้อมูลผ่าน Serial ไปยัง Gateway เพื่อแปลงและส่งต่อผ่าน MQTT ทำให้เชื่อมต่อกับระบบ IoT สมัยใหม่ได้โดยไม่ต้องเปลี่ยนฮาร์ดแวร์เดิม
+```
 2. เพราะเหตุใดเราจึงต้องใช้ `BackgroundService` ในการอ่านข้อมูล Serial แทนที่จะเปิดพอร์ตอ่านตรงๆ ภายในฟังก์ชันของ REST API?
+```
+เพราะ BackgroundService สามารถอ่านข้อมูล Serial อย่างต่อเนื่องอยู่เบื้องหลัง โดยไม่ขัดขวางการทำงานของ REST API ช่วยให้ระบบตอบสนองคำขอได้รวดเร็ว และจัดการข้อมูลจากอุปกรณ์ได้อย่างมีประสิทธิภาพ
+```
